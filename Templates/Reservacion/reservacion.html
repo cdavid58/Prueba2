@@ -1,0 +1,145 @@
+{% extends '../Shared/plantillas.html' %}
+
+{% block contenido %}
+
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	.wrap{
+		width: 1100px;
+		margin: 50px auto;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: center;
+		-webkit-justify-content: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+	}
+
+	.tarjeta-wrap{
+		margin: 10px;
+		-webkit-perspective: 800;
+		perspective: 800;
+	}
+
+	.tarjeta{
+		width: 300px;
+		height: 350px;
+		background: #F29720;
+		position: relative;
+		-webkit-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+		-webkit-transition: .7s ease;
+		transition: .7s ease;
+		-webkit-box-shadow: 0px 10px 15px -5px rgba(0,0,0,0.65);
+		box-shadow: 0px 10px 15px -5px rgba(0,0,0,0.65);
+
+	}
+
+	.adelante, .atras{
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+	}
+
+	.adelante{
+		width: 100%;
+	}
+
+	.atras{
+		-webkit-transform: rotateY(180deg);
+		transform: rotateY(180deg);
+
+		padding: 15px;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: center;
+		-webkit-justify-content: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
+
+		text-align: center;
+		color: #fff;
+		font-family: "open sans";
+	}
+
+	.tarjeta-wrap:hover .tarjeta{
+		-webkit-transform: rotateY(180deg);
+		transform: rotateY(180deg);
+	}
+
+	.card1{
+		background-image: url('{% for i in diseño %}{{ i.fondo.url }}{% endfor %}');
+		background-size: cover;
+	}
+
+	.card2{
+		background-image: url(img/2.jpg);
+		background-size: cover;
+	}
+
+	.card3{
+		background-image: url(img/3.jpg);
+		background-size: cover;
+	}
+</style>
+
+<div class="wrap col">
+		{% for b in barbero %}
+			<div class="tarjeta-wrap">
+				<div class="tarjeta">
+					<div class="adelante card1"></div>
+					<div class="atras">
+						<p>Mi Nombre es: {{b.nombre}}&nbsp;{{b.apellido}}, tengo 34 años de edad y 18 años de experiencia realizando cortes de cabello. Utilizando distintas tecnicas de cortes de cabellos y tribales en cabello y barba.</p>
+						<div>
+							<a href="#"><span><i class="fab fa-facebook fa-lg" title="facebook"></i></span></a>
+							<a href="https://www.instagram.com/vacu_barbershop/"><span><i class="fab fa-instagram"aria-hidden="true"></i></span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+		<!--div class="tarjeta-wrap">
+			<div class="tarjeta">
+				<div class="adelante card2"></div>
+				<div class="atras">
+					<p>Mi Nombre es: Diego Altuve, tengo 32 años de edad y 16 años de experiencia realizando cortes de cabello. Utilizando distintas tecnicas de cortes de cabellos.</p>
+				</div>
+			</div>
+		</div>
+		<div class="tarjeta-wrap">
+			<div class="tarjeta">
+				<div class="adelante card3"></div>
+				<div class="atras">
+					<p>Mi Nombre es: Ramón, tengo 21 años de edad y 5 años de experiencia realizando cortes de cabello. Utilizando distintas tecnicas de cortes de cabellos, buena tecnica de descolorizacion del cabello en capas permitiendo poder preservar más el tinte y evitando maltratos en el cuero cabelludo.</p>
+				</div>
+			</div>
+		</div-->
+	</div>
+<div class="">
+	
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+{% endblock %}
+

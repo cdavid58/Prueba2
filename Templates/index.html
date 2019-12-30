@@ -1,0 +1,41 @@
+{% extends 'Shared/plantillas.html' %}
+
+{% block contenido %}
+
+{% if user.is_authenticated %}
+	<div class="btn-whatsapp">
+		<a href="https://api.Whatsapp.com/send?phone=573104985925&text={{mensaje}}"><img src="http://s2.accesoperu.com/logos/btn_whatsapp.png" alt=""></a>
+	</div>
+{% endif %}
+{% include 'Shared/_carrucel.html' %}
+
+
+<h1 id="encabezado">
+	<span>
+		{% if diseño %}
+			{% for i in diseño %}
+				{{i.titulo}}
+			{% endfor %}
+		{% endif %}
+	</span>
+</h1>
+<p id="subEncabezado">BARBERIA<br><cite>Tú Barberia de Preferencia ya esta {{disponible}}.</cite></p>
+<blockquote>
+	<center>
+		<br><br><br>
+		<h3 id="a">Servicios</h3>
+		<hr style="border: 1px solid white; width:100px;">
+		<br><br>
+	</center>
+</blockquote>
+
+
+{% include 'Shared/_cartas.html' %}
+{% include 'Shared/video.html' %}
+
+<br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
+
+
+
+{% endblock %}

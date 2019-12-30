@@ -1,0 +1,21 @@
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  {% for i in carrucel %}
+    <div class="carousel-inner">
+      <div class="carousel-item active col">
+          <img src="{{ i.img1.url }}" height="350" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item carouselExampleSlidesOnly">
+        <img src="{{ i.img2.url }}" height="350" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item col">
+        <img src="{{ i.img3.url }}" height="350" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item col">
+        <img src="{{ i.img4.url }}" height="350" class="d-block w-100" alt="...">
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+
+

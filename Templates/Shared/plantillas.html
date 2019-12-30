@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		{% if diseño %}
+			{% for i in diseño %}
+				{{i.titulo}}
+			{% endfor %}
+		{% endif %}
+	</title>
+    
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+		#footer {
+	       position:fixed;
+	       left:0px;
+	       bottom:0px;
+	       height:30px;
+	       width:100%;
+	       font-size: 20px;
+	       font-family: "Itali";
+	       font-weight: bold;
+	       color: rgba(244,244,244,1);
+	       background:rgba(52, 58, 64,0.5);  
+	    }
+		body
+		{
+			background-image: url('{% for i in diseño %}{{i.fondo.url}}{% endfor %}') !important;
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
+		#encabezado, #subEncabezado, #a
+		{
+			color: white;
+		}
+	</style>
+</head>
+<body>
+
+	{% include './_Menu.html' %}
+	{% block contenido %}{% endblock %}
+	{% include './_footer.html' %}
+	<script src="{% static 'js/popper.min.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="{% static 'js/bootstrap.js' %}"></script>
+	<script src="https://kit.fontawesome.com/8b41a163ea.js"></script>
+	<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'js/jquery.slim.min.js' %}"></script>
+
+</body>
+</html>

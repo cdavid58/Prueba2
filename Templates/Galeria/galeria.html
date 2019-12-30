@@ -1,0 +1,153 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if diseño %}{% for i in diseño %}{{i.titulo}}{% endfor %}{% endif %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+    <link rel="stylesheet" href="{% static 'css/gallery-grid.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style>
+    body
+    {
+      background-image: url('{% for i in diseño %}{{i.fondo.url}}{% endfor %}') !important;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    /* CSS Document */
+
+    h1 {
+      font-weight: bold;
+      font-size: 40px;
+      font-family: "Arial";
+      text-shadow: 0 1px 0 #ccc, 
+                   0 2px 0 #c9c9c9,
+                   0 3px 0 #bbb,
+                   0 4px 0 #b9b9b9,
+                   0 5px 0 #aaa,
+                   0 6px 1px rgba(0,0,0,.1),
+                   0 0 5px rgba(0,0,0,.1),
+                   0 1px 3px rgba(0,0,0,.3),
+                   0 3px 5px rgba(0,0,0,.2),
+                   0 5px 10px rgba(0,0,0,.25),
+                   0 10px 10px rgba(0,0,0,.2),
+                   0 20px 20px rgba(0,0,0,.15);
+      color: rgba(244,244,244,1);
+      text-align: center;
+    }
+    #footer {
+       position:fixed;
+       left:0px;
+       bottom:0px;
+       height:30px;
+       width:100%;
+       font-size: 20px;
+       font-family: "Itali";
+       font-weight: bold;
+       color: rgba(244,244,244,1);
+       background:rgba(52, 58, 64,0.5);  
+    }
+    .caja{
+      margin-top: 10px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="container gallery-container caja col-10" style="background: rgba(138,149,151,0.5);">
+
+      <h1 class="col-12" style="margin-top: 5px; color: rgba(244,244,244,1);">Galeria de {% if diseño %}{% for i in diseño %}{{i.titulo}}{% endfor %}{% endif %}</h1>
+      <center>
+        <span style="color: rgba(244,244,244,1);;"><h5>Puedes ver mas Imagenes en </h5>
+          <a href="#"><span><i class="fab fa-facebook fa-2x" style="color: rgba(244,244,244,1);" title="facebook"></i></span></a>
+          <a href="https://www.instagram.com/vacu_barbershop/"><span><i class="fab fa-instagram fa-2x" style="
+          color:rgba(255,104,31,1); title="Instagram" aria-hidden="true"></i></span></a>
+        </span>
+      </center>
+      
+
+      <p class="page-description text-center"></p>
+      
+      <div class="tz-gallery">
+          <div class="row">
+              {% for o in obj %}
+                  <div class="col-sm-6 col-md-4">
+                      <a class="lightbox" href="{{o.imagen.url}}">
+                          <img src="{{o.imagen.url}}" alt="Park">
+                      </a>
+                  </div>
+              {% endfor %}
+          </div>
+      </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: fixed; top:0; width:100%;">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        {% if diseño %}
+            {% for i in diseño %}
+                {{i.titulo}}
+            {% endfor %}
+        {% endif %}
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <center>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'galeria' %}">Galeria</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Servicios
+              </a>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Quienes Somos?</a>
+              </li>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'corte' %}">Corte</a>
+              </div>
+            </li>
+
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Hola {{user.username}}!</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            {% else %}
+               <li class="nav-item">
+                  <a class="nav-link" href="{% url 'register' %}">Registro</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'login' %}">LogIn</a>
+                </li>
+            {% endif %}
+          </ul>
+        </center>
+      </div>
+    </nav>
+    {% include '../Shared/_footer.html' %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+  <script>
+      baguetteBox.run('.tz-gallery');
+  </script>
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>

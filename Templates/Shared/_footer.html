@@ -1,0 +1,7 @@
+<footer id="footer">
+	{% if diseño %}
+		{% for i in diseño %}
+			<p style="text-align: center;">&copy;<span style="padding-left: 6px; padding-right: 6px;">{{year|date:'Y'}}</span>&nbsp;<span>{{i.titulo}}</span></p>
+		{% endfor %}
+	{% endif %}
+</footer>

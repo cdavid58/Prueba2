@@ -1,0 +1,53 @@
+{% extends '../Shared/plantillas.html' %}
+
+
+{% block contenido %}
+
+<style>
+	.contenedor{
+		width: 500px;
+		height: auto;
+		margin-top: 15px;		
+		padding: 10px;
+
+	}
+	.img-fluid{
+		width: 100%;
+		height: auto;
+	}
+	.descripcion{
+		/*border: 1px solid rgba(0,0,0,5);
+		border-radius: 10px;*/
+		width: 600px;
+		height: 200px;
+	}
+	h3
+	{
+		font: 40px bold Arial;
+		color: rgba(244,244,244,1);
+		margin: 10px 0px 20px 0px;
+		padding: 8px;
+	}
+	#descripcion
+	{
+		margin-bottom: 30px;
+	}
+</style>
+<h3 class="text-center">Descripción del Servicio<hr style="border: 1px solid white; width: 450px;" ></h3>
+<center>
+	<div class="contenedor col">
+		<img style="border-radius: 20px;" src="{{ obj.imagen.url }}" class="img-fluid">
+	</div><br><br>
+	<h1 style="color: rgb(244,244,244);">{{obj.nombre}}</h1><br><br>
+	<div class="container descripcion col">
+		<div class="row col" style="color: rgb(244,244,244);">
+			<h5>Descripción:&nbsp;</h5>
+			<p id="descripcion">{{obj.descripcion}}.</p>
+			Percio del Servicio:&nbsp;<p style="border: 1px solid rgba(244,244,244,0.5); border-radius: 7px; padding: 0px 5px 0px 5px; margin-left:7px;">{{obj.precio}} Pesos</p><br>
+		</div>
+		<button class="btn btn-outline-primary btn-block" >Reservar Servicio</button>
+			
+	</div>
+</center><br><br><br><br>
+	
+{% endblock %}
